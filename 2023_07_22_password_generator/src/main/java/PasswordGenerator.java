@@ -1,4 +1,5 @@
 import rule.AbstractBasicRule;
+import util.StringUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,30 +32,38 @@ public class PasswordGenerator {
             buffer.append(passPart);
         }
 
-        String password = buffer.toString();
+        if (buffer.length() < passTotalLength) {
 
-        //TODO fix it
-        if (password.length() < passTotalLength) {
-            password = enrichPass(password);
+            int restCounter = passTotalLength - buffer.length(); //8
+            int ruleSize = rules.size(); //4
+            int symbolsPerRule = restCounter / ruleSize; // 2
+
+            for (AbstractBasicRule rule : rules) {
+                int ruleLength = symbolsPerRule;
+                String validRuleCharters = rule.getValidCharters();
+
+                String passPart = getPasswordPart(validRuleCharters, ruleLength);
+                buffer.append(passPart);
+            }
         }
 
-        return password;
+        List<String> passwordAsCharList = StringUtil.mapToList(buffer.toString());
+        Collections.shuffle(passwordAsCharList);
+
+        return StringUtil.mapToString(passwordAsCharList);
     }
 
-
-    //TODO fix it
     private String enrichPass(String password) {
         return getPasswordPart(password, passTotalLength - password.length());
     }
 
     private String getPasswordPart(String validRuleCharters, int ruleLength) {
-
         StringBuilder partPassBuffer = new StringBuilder();
 
         // ruleLength = 4
         for (int i = 0; i < ruleLength; i++) {
             // 0 - 27
-            int index = RANDOM.nextInt(validRuleCharters.length() - 1);
+            int index = RANDOM.nextInt(validRuleCharters.length());
             // validRuleCharters = "bac" index = 2 result = 'c'
             char randomChar = validRuleCharters.charAt(index);
             partPassBuffer.append(randomChar);

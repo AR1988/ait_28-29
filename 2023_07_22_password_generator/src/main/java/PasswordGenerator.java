@@ -35,7 +35,7 @@ public class PasswordGenerator {
 
         //TODO fix it
         if (password.length() < passTotalLength) {
-            password = enrichPass(password);
+            password = enrichPass(rules, password);
         }
 
         return password;
@@ -43,8 +43,19 @@ public class PasswordGenerator {
 
 
     //TODO fix it
-    private String enrichPass(String password) {
-        return getPasswordPart(password, passTotalLength - password.length());
+    private String enrichPass(List<AbstractBasicRule> rules, String password) {
+        final int restLength = passTotalLength - password.length();
+
+        final StringBuilder buffer = new StringBuilder(password);
+
+        for (AbstractBasicRule rule : rules) {
+            final String validRuleCharters = rule.getValidCharters();
+
+            final String passPart = getPasswordPart(validRuleCharters, restLength / rules.size());
+            buffer.append(passPart);
+        }
+
+        return buffer.toString();
     }
 
     private String getPasswordPart(String validRuleCharters, int ruleLength) {

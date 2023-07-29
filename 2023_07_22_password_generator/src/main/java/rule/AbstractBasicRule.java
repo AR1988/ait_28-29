@@ -9,6 +9,9 @@ public abstract class AbstractBasicRule {
     protected int length;
     protected String validCharters;
 
+    public AbstractBasicRule() {
+    }
+
     protected AbstractBasicRule(int length) {
         this.length = length;
         this.setupValidCarters();

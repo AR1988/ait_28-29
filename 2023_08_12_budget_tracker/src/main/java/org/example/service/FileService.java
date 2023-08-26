@@ -110,4 +110,17 @@ public class FileService {
             throw new RuntimeException(e);
         }
     }
+
+//    public void writeToFile(Path tablePath, List<String> content, boolean newLine) {
+//        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(tablePath, StandardOpenOption.APPEND)) {
+//            for (String line : content) {
+//                if (newLine) {
+//                    bufferedWriter.newLine();
+//                }
+//                bufferedWriter.write(line);
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

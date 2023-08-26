@@ -11,9 +11,10 @@ import java.util.List;
 /**
  * Сервис для инициализации базы данных и файловой структуры.
  */
-public class InitService {
+public class InitDBService {
 
     private final FileService fileService = new FileService();
+
 
     /**
      * Инициализирует базу данных и файловую структуру.
@@ -22,7 +23,16 @@ public class InitService {
      */
     public void initDb() throws IOException {
         String dbSourceDir = Constants.DB_SOURCE_DIR;
-        Path dbRootPath = Path.of(dbSourceDir);
+        initDb(dbSourceDir);
+    }
+
+    public void initTestDb() throws IOException {
+        String dbSourceDir = Constants.DB_TEST_SOURCE_DIR;
+        initDb(dbSourceDir);
+    }
+
+    private void initDb(String sourcePath) throws IOException {
+        Path dbRootPath = Path.of(sourcePath);
 
         Path categoryDbPath = dbRootPath.resolve(Constants.DB_CATEGORY_DIR_NAME);
         Path subCategoryDbPath = dbRootPath.resolve(Constants.DB_SUB_CATEGORY_DIR_NAME);

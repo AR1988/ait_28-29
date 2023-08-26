@@ -34,7 +34,7 @@ public abstract class Repository<E extends ID> {
      */
     protected Long getNextId() {
         IdService idService = new IdService();
-        return idService.generateNextId(EntityEnum.SUB_CATEGORY);
+        return idService.generateNextId(entityEnum);
     }
 
     /**

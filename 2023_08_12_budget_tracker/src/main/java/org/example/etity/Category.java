@@ -2,6 +2,7 @@ package org.example.etity;
 
 import java.util.Objects;
 import java.util.Set;
+
 /**
  * Класс, представляющий сущность "Категория".
  */
@@ -17,6 +18,10 @@ public final class Category implements ID {
 
     public Category(Long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Category(String name) {
         this.name = name;
     }
 

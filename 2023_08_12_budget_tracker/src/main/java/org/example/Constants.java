@@ -10,12 +10,13 @@ public class Constants {
     /**
      * Директория для хранения базы данных.
      */
-    public static final String DB_SOURCE_DIR = "db-prod-2";
+    public static final String DB_SOURCE_DIR = "db-dev";
+    public static final String DB_TEST_SOURCE_DIR = "db-test";
 
     /**
      * Имена директории и файлов для хранения транзакций.
      */
-    public static final String DB_TRANSACTION_DIR_NAME = "транзакции";
+    public static final String DB_TRANSACTION_DIR_NAME = "transaktion";
     public static final String DB_TRANSACTION_TABLE_NAME = "transaction.csv";
     public static final String DB_TRANSACTION_CATEGORY_REF_TABLE_NAME = "transaction_category.csv";
 

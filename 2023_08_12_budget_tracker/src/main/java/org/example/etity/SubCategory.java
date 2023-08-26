@@ -18,6 +18,10 @@ public final class SubCategory implements ID {
         this.name = name;
     }
 
+    public SubCategory(String name) {
+        this.name = name;
+    }
+
     @Override
     public Long getId() {
         return this.id;

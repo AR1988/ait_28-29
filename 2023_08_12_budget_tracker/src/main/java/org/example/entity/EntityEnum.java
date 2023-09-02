@@ -1,4 +1,4 @@
-package org.example.etity;
+package org.example.entity;
 
 import java.nio.file.Path;
 

@@ -1,7 +1,7 @@
 package org.example.service;
 
 import org.example.Constants;
-import org.example.etity.EntityEnum;
+import org.example.entity.EntityEnum;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,7 +1,7 @@
 package org.example.db.service;
 
 import org.example.Constants;
-import org.example.etity.EntityEnum;
+import org.example.entity.EntityEnum;
 import org.example.service.FileService;
 
 import java.nio.file.Path;

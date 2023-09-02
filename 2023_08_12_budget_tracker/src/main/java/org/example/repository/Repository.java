@@ -1,8 +1,8 @@
 package org.example.repository;
 
 import org.example.db.service.IdService;
-import org.example.etity.EntityEnum;
-import org.example.etity.ID;
+import org.example.entity.EntityEnum;
+import org.example.entity.ID;
 import org.example.service.FileService;
 
 import java.io.File;

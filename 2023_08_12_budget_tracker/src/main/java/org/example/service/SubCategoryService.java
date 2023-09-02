@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.etity.Category;
-import org.example.etity.SubCategory;
+import org.example.entity.Category;
+import org.example.entity.SubCategory;
 import org.example.repository.impl.SubCategoryRepository;
 
 import java.util.Set;

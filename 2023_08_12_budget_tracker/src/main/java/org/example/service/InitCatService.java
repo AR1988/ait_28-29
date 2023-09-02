@@ -2,8 +2,8 @@ package org.example.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.etity.Category;
-import org.example.etity.SubCategory;
+import org.example.entity.Category;
+import org.example.entity.SubCategory;
 import org.example.utils.CategoryJson;
 import org.example.utils.SubCategoryJson;
 

@@ -1,4 +1,4 @@
-package org.example.etity;
+package org.example.entity;
 
 /**
  * Интерфейс, определяющий методы для получения и установки идентификатора сущности.

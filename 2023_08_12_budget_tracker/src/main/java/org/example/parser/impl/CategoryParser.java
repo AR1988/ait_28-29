@@ -1,7 +1,7 @@
 package org.example.parser.impl;
 
 import org.example.Constants;
-import org.example.etity.Category;
+import org.example.entity.Category;
 import org.example.parser.Parser;
 
 /**

@@ -1,9 +1,9 @@
 package org.example.repository.impl;
 
 import org.example.Constants;
-import org.example.etity.Category;
-import org.example.etity.EntityEnum;
-import org.example.etity.SubCategory;
+import org.example.entity.Category;
+import org.example.entity.EntityEnum;
+import org.example.entity.SubCategory;
 import org.example.parser.Parser;
 import org.example.parser.impl.CategoryParser;
 import org.example.repository.Repository;

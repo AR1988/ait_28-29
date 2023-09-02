@@ -37,7 +37,7 @@ public class IdService {
                 throw new RuntimeException("Значение " + columns[0] + " не является целым числом");
             }
         } else if (csvIdLines.size() == 1) {
-            return 1L;
+            return 0L;
         } else {
             throw new RuntimeException("Проверьте формат файла " + keyFilePath + ". В файле нет записей касательно id для " + entityEnum.name());
         }

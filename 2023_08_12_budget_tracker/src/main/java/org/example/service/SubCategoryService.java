@@ -4,6 +4,7 @@ import org.example.entity.Category;
 import org.example.entity.SubCategory;
 import org.example.repository.impl.SubCategoryRepository;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -42,5 +43,15 @@ public class SubCategoryService {
      */
     public Set<SubCategory> getAll(Category category) {
         return subCategoryRepository.finAll(category);
+    }
+
+
+    public SubCategory getById(long subCategoryId) {
+        return findById(subCategoryId)
+                .orElseThrow(() -> new RuntimeException("Subcategory with id " + subCategoryId + " not exists"));
+    }
+
+    public Optional<SubCategory> findById(long subCategoryId) {
+        return subCategoryRepository.findById(subCategoryId);
     }
 }

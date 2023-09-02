@@ -6,7 +6,6 @@ import org.example.entity.EntityEnum;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 /**
  * Сервис для инициализации базы данных и файловой структуры.
@@ -48,21 +47,21 @@ public class InitDBService {
             Path tablePath = entityEnum.getTablePath();
             Path keyTablePath = entityEnum.getKeyTablePath();
 
-            fileService.createFile(referencePath);
+            if (referencePath != null) {
+                fileService.createFile(referencePath);
+            }
             fileService.createFile(tablePath);
             fileService.createFile(keyTablePath);
 
             if (entityEnum.equals(EntityEnum.CATEGORY) || entityEnum.equals(EntityEnum.SUB_CATEGORY)) {
-                Files.write(referencePath, List.of("CATEGORY_ID; SUBCATEGORY_ID;"));
-                Files.write(tablePath, List.of("ID; NAME;"));
+                Files.writeString(referencePath, "CATEGORY_ID;SUBCATEGORY_ID;");
+                Files.writeString(tablePath, "ID;NAME;");
             }
-
 
             if (entityEnum.equals(EntityEnum.TRANSACTION)) {
-                Files.write(referencePath, List.of("TRANSACTION_ID; CATEGORY_ID;"));
-                Files.write(tablePath, List.of("ID;payDay;amount;"));
+                Files.writeString(tablePath, "ID;DATE;AMOUNT;SUB_CATEGORY_ID;");
             }
-            Files.write(keyTablePath, List.of("ID; CREATED_AT;"));
+            Files.writeString(keyTablePath, "ID;CREATED_AT;");
         }
     }
 }

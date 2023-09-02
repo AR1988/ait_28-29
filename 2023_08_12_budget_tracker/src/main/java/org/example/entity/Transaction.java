@@ -1,40 +1,44 @@
 package org.example.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Transaction {
+public class Transaction implements ID {
     private Long id;
-    private LocalDate date;
+    private LocalDateTime date;
     private BigDecimal amount;
-    private Category category;
-
+    private SubCategory subCategory;
 
     public Transaction() {
     }
 
-    public Transaction(Long id, LocalDate date, BigDecimal amount, Category category) {
-        this.id = id;
+    public Transaction(LocalDateTime date, BigDecimal amount, SubCategory subCategory) {
         this.date = date;
         this.amount = amount;
-        this.category = category;
+        this.subCategory = subCategory;
     }
 
+    public Transaction(LocalDateTime date, BigDecimal amount) {
+        this.date = date;
+        this.amount = amount;
+    }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -46,12 +50,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Category getCategory() {
-        return category;
+    public SubCategory getSubCategory() {
+        return subCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
     }
 
     @Override
@@ -59,15 +63,12 @@ public class Transaction {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (Transaction) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.date, that.date) &&
-                Objects.equals(this.amount, that.amount) &&
-                Objects.equals(this.category, that.category);
+        return Objects.equals(this.id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, amount, category);
+        return Objects.hash(id);
     }
 
     @Override
@@ -76,8 +77,6 @@ public class Transaction {
                 "id=" + id + ", " +
                 "payDay=" + date + ", " +
                 "amount=" + amount + ", " +
-                "category=" + category + ']';
+                "category=" + subCategory + ']';
     }
-
-
 }

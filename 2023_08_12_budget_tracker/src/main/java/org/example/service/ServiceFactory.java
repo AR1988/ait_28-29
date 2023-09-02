@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.entity.EntityEnum;
 import org.example.repository.impl.CategoryRepository;
 import org.example.repository.impl.SubCategoryRepository;
+import org.example.repository.impl.TransactionRepository;
 
 import static java.util.Objects.requireNonNull;
 
@@ -33,5 +34,10 @@ public class ServiceFactory {
 
     public static InitDBService getInitDBService() {
         return new InitDBService();
+    }
+
+    public static TransactionService getTransactionService(SubCategoryService subCategoryService) {
+        TransactionRepository categoryRepository = new TransactionRepository(EntityEnum.TRANSACTION);
+        return new TransactionService(categoryRepository, subCategoryService);
     }
 }

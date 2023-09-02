@@ -9,7 +9,7 @@ import java.io.IOException;
 public class TestRunner {
 
     protected static void init() throws IOException {
-        InitDBService initDBService = new InitDBService();
-        initDBService.initTestDb();
+//        InitDBService initDBService = new InitDBService();
+//        initDBService.initTestDb();
     }
 }

@@ -2,6 +2,8 @@ package org.example.db.service;
 
 import org.example.Constants;
 import org.example.entity.EntityEnum;
+import org.example.exception.IdParseException;
+import org.example.exception.TableFormatException;
 import org.example.service.FileService;
 
 import java.nio.file.Path;
@@ -22,7 +24,7 @@ public class IdService {
      *
      * @param entityEnum Сущность, для которой необходимо получить уникальный идентификатор.
      * @return Текущий уникальный идентификатор.
-     * @throws RuntimeException Если произошла ошибка при получении уникального идентификатора.
+     * @throws IdParseException Если произошла ошибка при получении уникального идентификатора.
      */
     public Long getId(EntityEnum entityEnum) {
         String keyFilePath = getAbsolutePathToFile(entityEnum.getKeyTablePath());
@@ -34,7 +36,7 @@ public class IdService {
             try {
                 return Long.parseLong(columns[0]);
             } catch (NumberFormatException e) {
-                throw new RuntimeException("Значение " + columns[0] + " не является целым числом");
+                throw new IdParseException("Значение " + columns[0] + " не является целым числом");
             }
         } else if (csvIdLines.size() == 1) {
             return 0L;
@@ -70,7 +72,9 @@ public class IdService {
      */
     private String[] parseCsvLine(String line) {
         String[] columns = line.split(Constants.CSV_DELIMITER);
-        //todo проверить количество колонок
+        if (columns.length != 2) {
+            throw new TableFormatException("Количество колонок не соответствует ожидаемому. Ожидается 2, найдено:" + columns.length);
+        }
         return columns;
     }
 

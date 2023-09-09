@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.entity.Category;
 import org.example.entity.SubCategory;
+import org.example.exception.CategoryNotFoundException;
 import org.example.repository.impl.CategoryRepository;
 
 import java.util.HashSet;
@@ -80,7 +81,7 @@ public class CategoryService {
             category.setSubCategories(subCategories);
             return category;
         } else {
-            throw new RuntimeException("Category with id " + categoryId + " not found");
+            throw new CategoryNotFoundException("Category with id " + categoryId + " not found");
         }
     }
 

@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.entity.Category;
 import org.example.entity.SubCategory;
+import org.example.exception.SubCategoryNotFoundException;
 import org.example.repository.impl.SubCategoryRepository;
 
 import java.util.Optional;
@@ -48,7 +49,7 @@ public class SubCategoryService {
 
     public SubCategory getById(long subCategoryId) {
         return findById(subCategoryId)
-                .orElseThrow(() -> new RuntimeException("Subcategory with id " + subCategoryId + " not exists"));
+                .orElseThrow(() -> new SubCategoryNotFoundException("Subcategory with id " + subCategoryId + " not exists"));
     }
 
     public Optional<SubCategory> findById(long subCategoryId) {

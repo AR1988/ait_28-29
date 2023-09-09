@@ -22,7 +22,7 @@ public class Main {
         CategoryService categoryService = getCategoryService(subCategoryService);
         InitDBService initDBService = getInitDBService();
         InitCatService initCatService = getInitCatService(categoryService, subCategoryService);
-        TransactionService transactionService = getTransactionService(subCategoryService);
+        TransactionService transactionService = getTransactionService(subCategoryService, categoryService);
 
         initDBService.initDb();
 //
@@ -30,9 +30,11 @@ public class Main {
         initCatService.initCategory(categoryJsons);
 
 
-        List<Category> categoryList = categoryService.getAll();
-        Set<SubCategory> subCategoryList = subCategoryService.getAll(categoryList.get(0));
+        List<Category> categories = categoryService.getAll();
 
+//        List<Category> categoryList = categories;
+//        Set<SubCategory> subCategoryList = subCategoryService.getAll(categoryList.get(0));
+//
         for (int i = 3; i < 14; i++) {
             Transaction transaction = new Transaction(
                     LocalDateTime.now(),
@@ -40,5 +42,11 @@ public class Main {
             );
             transactionService.save(transaction, i);
         }
+//
+//        List<Transaction> all = transactionService.findAll();
+//
+//        System.out.println(all);
+
+        System.out.println(transactionService.findAllByCategory(1));
     }
 }

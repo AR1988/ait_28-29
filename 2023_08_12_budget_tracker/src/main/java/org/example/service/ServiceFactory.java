@@ -36,8 +36,8 @@ public class ServiceFactory {
         return new InitDBService();
     }
 
-    public static TransactionService getTransactionService(SubCategoryService subCategoryService) {
-        TransactionRepository categoryRepository = new TransactionRepository(EntityEnum.TRANSACTION);
-        return new TransactionService(categoryRepository, subCategoryService);
+    public static TransactionService getTransactionService(SubCategoryService subCategoryService, CategoryService categoryService) {
+        TransactionRepository transactionRepository = new TransactionRepository(EntityEnum.TRANSACTION, subCategoryService);
+        return new TransactionService(transactionRepository, subCategoryService, categoryService);
     }
 }

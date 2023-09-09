@@ -5,8 +5,9 @@ import org.example.entity.Transaction;
 import org.example.repository.impl.TransactionRepository;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Andrej Reutow
@@ -16,11 +17,13 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final SubCategoryService subCategoryService;
+    private final CategoryService categoryService;
 
     public TransactionService(TransactionRepository transactionRepository,
-                              SubCategoryService subCategoryService) {
+                              SubCategoryService subCategoryService, CategoryService categoryService) {
         this.subCategoryService = subCategoryService;
         this.transactionRepository = transactionRepository;
+        this.categoryService = categoryService;
     }
 
     public Transaction save(Transaction transaction, long subCategoryId) {
@@ -31,15 +34,32 @@ public class TransactionService {
     }
 
     public List<Transaction> findAll() {
-        return Collections.emptyList();
+        return transactionRepository.findAll();
     }
 
     public List<Transaction> findAllBySubcategory(long subCategoryId) {
-        return Collections.emptyList();
+        SubCategory subCategory = subCategoryService.getById(subCategoryId);
+        return findAll().stream().filter(tr -> tr.getSubCategory().equals(subCategory)).toList();
+//        return findAll().stream().filter(tr -> tr.getSubCategory().getId().equals(subCategoryId)).toList();
     }
 
     public List<Transaction> findAllByCategory(long categoryId) {
-        return Collections.emptyList();
+        Set<SubCategory> subCategories = categoryService.getById(categoryId).getSubCategories();
+
+        List<Transaction> transactionsResult = new ArrayList<>();
+        for (SubCategory subCategory : subCategories) {
+            transactionsResult.addAll(findAllBySubcategory(subCategory.getId()));
+        }
+
+//        List<Transaction> transactions = findAll();
+//        for (SubCategory subCategory : subCategories) {
+//            for (Transaction transaction : transactions) {
+//                if (transaction.getSubCategory().equals(subCategory)) {
+//                    transactionsResult.add(transaction);
+//                }
+//            }
+//        }
+        return transactionsResult;
     }
 
     public List<Transaction> findAllBySubcategoryAndDate(LocalDateTime from, LocalDateTime to, long subCategoryId) {

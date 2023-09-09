@@ -6,7 +6,9 @@ import org.example.repository.impl.CategoryRepository;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+
 /**
  * Сервис для работы с категориями.
  */
@@ -61,11 +63,29 @@ public class CategoryService {
      * @return Список всех категорий с подкатегориями.
      */
     public List<Category> getAll() {
-        List<Category> categories = categoryRepository.finAll();
+        List<Category> categories = categoryRepository.findAll();
         for (Category category : categories) {
             Set<SubCategory> subCategories = subCategoryService.getAll(category);
             category.setSubCategories(subCategories);
         }
         return categories;
+    }
+
+
+    public Category getById(long categoryId) {
+        Optional<Category> optionalCategory = findById(categoryId);
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            Set<SubCategory> subCategories = subCategoryService.getAll(category);
+            category.setSubCategories(subCategories);
+            return category;
+        } else {
+            throw new RuntimeException("Category with id " + categoryId + " not found");
+        }
+    }
+
+
+    public Optional<Category> findById(long categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 }

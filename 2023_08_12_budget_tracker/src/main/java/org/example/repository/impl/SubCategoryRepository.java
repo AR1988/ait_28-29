@@ -58,7 +58,7 @@ public class SubCategoryRepository extends Repository<SubCategory> {
      * @return Список всех подкатегорий из хранилища.
      */
     @Override
-    public List<SubCategory> finAll() {
+    public List<SubCategory> findAll() {
         File file = entityEnum.getTablePath().toFile();
         List<String> stringList = fileService.readFile(file.getAbsolutePath());
         Parser<SubCategory> parser = new SubCategoryParser();
@@ -104,7 +104,7 @@ public class SubCategoryRepository extends Repository<SubCategory> {
      * @return Опциональный объект подкатегории.
      */
     public Optional<SubCategory> findById(Long id) {
-        List<SubCategory> subCategories = finAll();
+        List<SubCategory> subCategories = findAll();
         return subCategories.stream().filter(sc -> sc.getId().equals(id)).findFirst();
     }
 

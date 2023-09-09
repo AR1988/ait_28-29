@@ -13,7 +13,8 @@ import java.time.format.DateTimeFormatter;
 import static org.example.Constants.CSV_DATA_TIME_FORMATTER;
 
 public class TransactionParser implements Parser<Transaction> {
-    private SubCategoryService subCategoryService;
+
+    private final SubCategoryService subCategoryService;
 
     public TransactionParser(SubCategoryService subCategoryService) {
         this.subCategoryService = subCategoryService;

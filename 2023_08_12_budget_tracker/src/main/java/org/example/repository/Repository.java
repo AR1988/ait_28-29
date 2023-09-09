@@ -63,5 +63,5 @@ public abstract class Repository<E extends ID> {
      *
      * @return Список всех сущностей.
      */
-    protected abstract List<E> finAll();
+    protected abstract List<E> findAll();
 }

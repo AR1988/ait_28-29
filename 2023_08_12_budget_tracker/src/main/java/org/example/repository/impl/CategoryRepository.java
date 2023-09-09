@@ -11,6 +11,7 @@ import org.example.repository.Repository;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Репозиторий для работы с категориями.
@@ -76,7 +77,7 @@ public class CategoryRepository extends Repository<Category> {
      * @return Список категорий.
      */
     @Override
-    public List<Category> finAll() {
+    public List<Category> findAll() {
         File file = entityEnum.getTablePath().toFile();
         List<String> stringList = fileService.readFile(file.getAbsolutePath());
         Parser<Category> parser = new CategoryParser();
@@ -91,6 +92,12 @@ public class CategoryRepository extends Repository<Category> {
         }
 
         return categories;
+    }
+
+
+    public Optional<Category> findById(Long id) {
+        List<Category> categories = findAll();
+        return categories.stream().filter(sc -> sc.getId().equals(id)).findFirst();
     }
 }
 

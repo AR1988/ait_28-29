@@ -1,9 +1,11 @@
 package org.example.repository.impl;
 
 import org.example.Constants;
+import org.example.entity.Category;
 import org.example.entity.EntityEnum;
 import org.example.entity.Transaction;
 import org.example.parser.Parser;
+import org.example.parser.impl.CategoryParser;
 import org.example.parser.impl.TransactionParser;
 import org.example.repository.Repository;
 import org.example.service.SubCategoryService;

@@ -1,11 +1,13 @@
 package org.example.service;
 
+import org.example.entity.Category;
 import org.example.entity.SubCategory;
 import org.example.entity.Transaction;
 import org.example.repository.impl.TransactionRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 

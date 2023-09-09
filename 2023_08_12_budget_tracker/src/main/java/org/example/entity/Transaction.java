@@ -24,6 +24,13 @@ public class Transaction implements ID {
         this.amount = amount;
     }
 
+    public Transaction(Long id, LocalDateTime date, BigDecimal amount, SubCategory subCategory) {
+        this.id = id;
+        this.date = date;
+        this.amount = amount;
+        this.subCategory = subCategory;
+    }
+
     @Override
     public Long getId() {
         return id;
